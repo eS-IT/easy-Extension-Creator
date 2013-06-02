@@ -99,7 +99,7 @@ class es_easydev extends \BackendModule{
     private function makeModule($intId){
         $strContent         = '';
         $this->arrModuleData= $this->es_easydev_util->loadProjectData($intId);
-        $this->strBasePath  = $this->Environment->documentRoot . '/' . $this->strBasePath;
+        $this->strBasePath  = TL_ROOT . '/' . $this->strBasePath;
         $this->strBasePath .= '/' . $this->arrModuleData['project'][0]['folder'];
         $this->strFolder    = $this->arrModuleData['project'][0]['folder'];
         $this->strExtName   = $this->arrModuleData['project'][0]['title'];
@@ -157,7 +157,7 @@ class es_easydev extends \BackendModule{
      */
     private function parseConfig(){
         $this->loadLanguageFile('snippets');
-        $strInputFile       = $this->Environment->documentRoot . '/' . $this->strSnippetsPath . '/config.php';
+        $strInputFile       = TL_ROOT . '/' . $this->strSnippetsPath . '/config.php';
         $strOutputFile      = $this->strBasePath . '/config/config.php';
         $arrData['config']  = '';
 
@@ -187,12 +187,12 @@ class es_easydev extends \BackendModule{
         $this->es_easydev_util->runHooks('easydev_copyfiles', $this->strBasePath);
 
         // Default-Icon kopieren
-        $strSource  = $this->Environment->documentRoot . '/' . $this->strSnippetsPath . '/default.png';
+        $strSource  = TL_ROOT . '/' . $this->strSnippetsPath . '/default.png';
         $strDest    = $this->strBasePath . '/assets/img/default.png';
         $strContent.= $this->es_easydev_util->copyFile($strSource, $strDest);
 
         // .htaccess copieren
-        $strSource  = $this->Environment->documentRoot . '/' . $this->strSnippetsPath . '/.htaccess';
+        $strSource  = TL_ROOT . '/' . $this->strSnippetsPath . '/.htaccess';
         $strDest    = $this->strBasePath . '/assets/.htaccess';
         $strContent.= $this->es_easydev_util->copyFile($strSource, $strDest);
 
@@ -268,7 +268,7 @@ class es_easydev extends \BackendModule{
      * @return string
      */
     private function copyTemplates($strDest, $strFile = 'template_be.html5', $strSource = false){
-        $strSource  = ($strSource != false) ? $strSource : $this->Environment->documentRoot . '/' . $this->strSnippetsPath . '/' . $strFile;
+        $strSource  = ($strSource != false) ? $strSource : TL_ROOT . '/' . $this->strSnippetsPath . '/' . $strFile;
         return $this->es_easydev_util->copyFile($strSource, $strDest);
     }
 
@@ -292,12 +292,12 @@ class es_easydev extends \BackendModule{
             $strContent.= $this->es_easydev_util->makeDir($strFolder);
 
             // default.php kopieren
-            $strSource  = $this->Environment->documentRoot . '/' . $this->strSnippetsPath . '/default.php';
+            $strSource  = TL_ROOT . '/' . $this->strSnippetsPath . '/default.php';
             $strDest    = $this->strBasePath . '/languages/' . $strLang . '/default.php';
             $strContent.= $this->es_easydev_util->copyFile($strSource, $strDest);
 
             // modules.php kopieren
-            $strSource              = $this->Environment->documentRoot . '/' . $this->strSnippetsPath . '/modules.php';
+            $strSource              = TL_ROOT . '/' . $this->strSnippetsPath . '/modules.php';
             $strDest                = $this->strBasePath . '/languages/' . $strLang . '/modules.php';
             $arrData['languages']   = '';
 
@@ -314,7 +314,7 @@ class es_easydev extends \BackendModule{
             $strContent.= $this->es_easydev_util->parseFile($strSource, $strDest, $arrData, 'table');
 
             // Tabellen-Dateien kopieren
-            $strSource  = $this->Environment->documentRoot . '/' . $this->strSnippetsPath . '/languages_tab.php';
+            $strSource  = TL_ROOT . '/' . $this->strSnippetsPath . '/languages_tab.php';
 
             foreach($this->arrModuleData['table'] as $arrTable){
                 $strDest        = $this->strBasePath . '/languages/' . $strLang . '/' . $arrTable['table_name'] . '.php';
@@ -349,8 +349,8 @@ class es_easydev extends \BackendModule{
      */
     private function makeClasses(){
         $strContent = '';
-        $strSourceBe= $this->Environment->documentRoot . '/' . $this->strSnippetsPath . '/class_be.php';
-        $strSourceFe= $this->Environment->documentRoot . '/' . $this->strSnippetsPath . '/class_fe.php';
+        $strSourceBe= TL_ROOT . '/' . $this->strSnippetsPath . '/class_be.php';
+        $strSourceFe= TL_ROOT . '/' . $this->strSnippetsPath . '/class_fe.php';
 
         // Klassen der Tabellen anlegen und Callbacks einfuegen
         foreach($this->arrModuleData['table'] as $rowTable){
@@ -396,9 +396,9 @@ class es_easydev extends \BackendModule{
         $strContent = '';
 
         if($this->arrModuleData['project'][0]['compatibility'] == ''){
-            $strSourceBe= $this->Environment->documentRoot . '/' . $this->strSnippetsPath . '/dca.php';
+            $strSourceBe= TL_ROOT . '/' . $this->strSnippetsPath . '/dca.php';
         } else {
-            $strSourceBe= $this->Environment->documentRoot . '/' . $this->strSnippetsPath . '/dca' . $this->arrModuleData['project'][0]['compatibility'] . '.php';
+            $strSourceBe= TL_ROOT . '/' . $this->strSnippetsPath . '/dca' . $this->arrModuleData['project'][0]['compatibility'] . '.php';
         }
 
         foreach($this->arrModuleData['table'] as $arrTable){
@@ -511,7 +511,7 @@ class es_easydev extends \BackendModule{
      * @return string
      */
     private function makeDatabase(){
-        $strInput   = $this->Environment->documentRoot . '/' . $this->strSnippetsPath . '/database.sql';
+        $strInput   = TL_ROOT . '/' . $this->strSnippetsPath . '/database.sql';
         $strContent = '';
 
         if(is_array($this->arrModuleData) && array_key_exists('table', $this->arrModuleData)){

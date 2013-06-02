@@ -173,7 +173,7 @@ class es_easydev_util extends \BackendModule{
         $this->arrModuleData['project'] = $this->getProjectData($intId);
         $this->arrModuleData['table']   = $this->getModulData($intId);
         $this->arrModuleData['fields']  = $this->getFieldData($this->arrModuleData['table']);
-        $this->strBasePath              = $this->Environment->documentRoot . '/' . $this->strModulesPath;
+        $this->strBasePath              = TL_ROOT . '/' . $this->strModulesPath;
         $this->strBasePath             .= '/' . $this->arrModuleData['project'][0]['folder'];
         return $this->arrModuleData;
     }

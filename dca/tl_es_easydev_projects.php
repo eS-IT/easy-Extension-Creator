@@ -91,13 +91,13 @@ $GLOBALS['TL_DCA']['tl_es_easydev_projects'] = array
             (
                 'label'               => &$GLOBALS['TL_LANG']['tl_es_easydev_projects']['compilemodule'],
                 'href'                => 'key=compilemodule',
-                'icon'                => 'system/modules/es_easydev/assets/img/compile-notcompiled.png',
+                'icon'                => "/system/modules/$strModule/assets/img/compile-notcompiled.png",
             ),
             'editmodules' => array
             (
                 'label'               => &$GLOBALS['TL_LANG']['tl_es_easydev_projects']['editmodules'],
                 'href'                => 'table=tl_es_easydev_tables',
-                'icon'                => 'system/modules/es_easydev/assets/img/modules.png',
+                'icon'                => "system/modules/$strModule/assets/img/modules.png",
             )
 		)
 	),

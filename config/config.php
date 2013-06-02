@@ -40,7 +40,7 @@
  */
 $GLOBALS['BE_MOD']['system']['es_easydev_projects'] = array(
     'tables'        => array('tl_es_easydev_projects', 'tl_es_easydev_tables', 'tl_es_easydev_fields'),
-    'icon'          => 'system/modules/es_easydev/assets/img/projects.png',
+    'icon'          => "system/modules/$strModule/assets/img/projects.png",
     'compilemodule' => array('es_easydev', 'compileModule')
 );
 
